@@ -32,6 +32,9 @@ namespace WebAPI.Controllers
             {
                 Id = Guid.NewGuid(),
                 Name = addCategory.Name,
+                Description = addCategory.Description,
+                Image = addCategory.Image,
+                Amount = addCategory.Amount,
             };
 
             await dbContext.Categories.AddAsync(category);
@@ -47,6 +50,9 @@ namespace WebAPI.Controllers
             if (category != null)
             {
                 category.Name = updateCategory.Name;
+                category.Description = updateCategory.Description;
+                category.Image = updateCategory.Image;
+                category.Amount = updateCategory.Amount;
 
                 await dbContext.SaveChangesAsync();
 

@@ -1,0 +1,22 @@
+﻿@model List<CategoriesViewModel>
+@{
+    ViewData["Title"] = "HomePage";
+}
+
+<table cellpadding="10" cellspacing="10" border="1">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Amount</th>
+    </tr>
+    @foreach (var catogories in Model)
+    {
+        <tr>
+            <th>@catogories.Name</th>
+            <th>@catogories.Description</th>
+            <th>@catogories.Image</th>
+            <th>@catogories.Amount</th>
+        </tr>
+    }
+</table>
