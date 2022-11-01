@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CustomersSite</title>
+    <title>@ViewData["Title"] CustomersSite</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CustomersSite.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/vendor/font-awesome/css/font-awesome.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/product-detail.css" asp-append-version="true" />
+
 </head>
 <body>
     <div class="app">
@@ -21,7 +24,7 @@
                 <nav class="header__navbar">
                     <ul class="header__navbar-list">
                         <li class="header__navbar-item header__navbar-item--separate">
-                            Rookies Store
+                            <a style="text-decoration: none;color: var(--white-color);" asp-controller="Home" asp-action="Index">Rookies Store</a>
                         </li>
                         <li class="header__navbar-item header__navbar-item--has-qr">
                             Download App
@@ -42,7 +45,7 @@
                         <!-- <li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">Register</li>
                         <li class="header__navbar-item header__navbar-item--strong">Login</li> -->
                         <li class="header__navbar-item header__navbar-user">
-                            <img src="/img/qr_code.png" alt="" class="header__navbar-user-img">
+                            <img src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/267904423_3072838436303106_8402354931433032745_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=gQKdSzTZAMMAX8nkJe5&_nc_ht=scontent.fsgn2-4.fna&oh=00_AfBmer_J-Hw3HiInL9srHVcp_FI3MimR1oZSjPihq9blog&oe=636707C7" alt="" class="header__navbar-user-img">
                             <span class="header__navbar-user-name">Huu Dong</span>
 
                             <ul class="header__navbar-user-menu">
@@ -62,33 +65,35 @@
 
                 <div class="header-with-search">
                     <div class="header__logo">
-                        <img src="/img/shopee.png" alt="logo" class="header__logo-img">
+                        <a asp-controller="Home" asp-action="Index"><img src="/img/shopee.png" alt="logo" class="header__logo-img"></a>
                     </div>
 
                     <div class="header__search">
-                        <div class="header__search-input-wrap">
-                            <input type="text" class="header__search-input" placeholder="Search product">
-                            <div class="header__search-history">
-                                <h3 class="header__search-history-heading">History</h3>
-                                <ul class="header__search-history-list">
-                                    <li class="header__search-history-item">
-                                        <a href="">Item 1</a>
-                                    </li>
-                                    <li class="header__search-history-item">
-                                        <a href="">Item 2</a>
-                                    </li>
-                                </ul>
+                        <form style="display:contents" asp-controller="Home" asp-action="Search" method="get">
+                            <div class="header__search-input-wrap">
+                                <input type="text" class="header__search-input" placeholder="Search product">
+                                <div class="header__search-history">
+                                    <h3 class="header__search-history-heading">History</h3>
+                                    <ul class="header__search-history-list">
+                                        <li class="header__search-history-item">
+                                            <a href="">Áo</a>
+                                        </li>
+                                        <li class="header__search-history-item">
+                                            <a href="">Quần</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <button class="header__search-btn">
-                            <i class="header__search-btn-icon fas fa-search"></i>
-                        </button>
+                            <button class="header__search-btn">
+                                <i class="header__search-btn-icon fas fa-search"></i>
+                            </button>
+                        </form>
                     </div>
 
                     <div class="header__cart">
                         <div class="header__cart-wrap">
                             <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
-                            <span class="header__cart-notice">3</span>
+                            <span id="header__cart-notice" class="header__cart-notice">3</span>
                             <!-- No Cart: header__cart-list--no-cart -->
                             <div class="header__cart-list">
                                 <img src="./assets/img/qr_code.png" alt="" class="header__cart-no-cart-img">
@@ -96,59 +101,59 @@
                                     Nothing Now
                                 </span>
                                 <h4 class="header__cart-heading">Already adding</h4>
-                                <ul class="header__cart-list-item">
+                                <ul id="header__cart-list-item" class="header__cart-list-item">
                                     <li class="header__cart-item">
-                                        <img src="/assets/img/qr_code.png" alt="" class="header__cart-img">
+                                        <img src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/431599/item/goods_69_431599.jpg?width=1600&impolicy=quality_75" alt="" class="header__cart-img">
                                         <div class="header__cart-item-info">
                                             <div class="header__cart_item-head">
-                                                <h5 class="header__cart-item-name">T-shirt</h5>
+                                                <h5 class="header__cart-item-name">Áo Thun Cổ Tròn Ngắn Tay</h5>
                                                 <div class="header__cart-item-price-wrap">
-                                                    <span class="header__cart-item-price">2.000.000đ</span>
+                                                    <span class="header__cart-item-price">244.000đ</span>
                                                     <span class="header__cart-item-multiply">x</span>
-                                                    <span class="header__cart-item-qnt">2</span>
+                                                    <span class="header__cart-item-qnt">1</span>
                                                 </div>
                                             </div>
                                             <div class="header__cart-item-body">
                                                 <span class="header__cart-item-description">
-                                                    Classify : Silver
+                                                    Color : Red
                                                 </span>
                                                 <span class="header__cart-item-remove">Delete</span>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="header__cart-item">
-                                        <img src="/assets/img/qr_code.png" alt="" class="header__cart-img">
+                                        <img src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/453738/sub/goods_453738_sub14.jpg?width=1600&impolicy=quality_75" alt="" class="header__cart-img">
                                         <div class="header__cart-item-info">
                                             <div class="header__cart_item-head">
-                                                <h5 class="header__cart-item-name">T-shirt</h5>
+                                                <h5 class="header__cart-item-name">Áo Chui Đầu Gài Nút Dài Tay</h5>
                                                 <div class="header__cart-item-price-wrap">
-                                                    <span class="header__cart-item-price">2.000.000đ</span>
+                                                    <span class="header__cart-item-price">686.000đ</span>
                                                     <span class="header__cart-item-multiply">x</span>
-                                                    <span class="header__cart-item-qnt">2</span>
+                                                    <span class="header__cart-item-qnt">1</span>
                                                 </div>
                                             </div>
                                             <div class="header__cart-item-body">
                                                 <span class="header__cart-item-description">
-                                                    Classify : Silver
+                                                    Color : Red
                                                 </span>
                                                 <span class="header__cart-item-remove">Delete</span>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="header__cart-item">
-                                        <img src="/assets/img/qr_code.png" alt="" class="header__cart-img">
+                                        <img src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/452524/sub/goods_452524_sub14.jpg?width=1600&impolicy=quality_75" alt="" class="header__cart-img">
                                         <div class="header__cart-item-info">
                                             <div class="header__cart_item-head">
-                                                <h5 class="header__cart-item-name">T-shirt</h5>
+                                                <h5 class="header__cart-item-name">Quần Jeans Slim Fit</h5>
                                                 <div class="header__cart-item-price-wrap">
-                                                    <span class="header__cart-item-price">2.000.000đ</span>
+                                                    <span class="header__cart-item-price">980.000đ</span>
                                                     <span class="header__cart-item-multiply">x</span>
-                                                    <span class="header__cart-item-qnt">2</span>
+                                                    <span class="header__cart-item-qnt">1</span>
                                                 </div>
                                             </div>
                                             <div class="header__cart-item-body">
                                                 <span class="header__cart-item-description">
-                                                    Classify : Silver
+                                                    Color : Red
                                                 </span>
                                                 <span class="header__cart-item-remove">Delete</span>
                                             </div>
@@ -167,17 +172,23 @@
     </div>
 
     @*RenderBody*@
-     @RenderBody()
-
+    @RenderBody()
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - CustomersSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2/11/2022 - Đông - CustomersSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/popperjs/popper.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -10,7 +10,7 @@ using System.Web;
 
 namespace CustomersSite.ViewComponents
 {
-    public class CategoriesViewComponent : ViewComponent
+    public class CategoriesViewComponent : Microsoft.AspNetCore.Mvc.ViewComponent
     {
         Uri baseAddress = new Uri("https://localhost:7290/api");
         HttpClient client;
@@ -21,12 +21,12 @@ namespace CustomersSite.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            List<CategoriesViewModel> categories = new List<CategoriesViewModel>();
+            List<Category> categories = new List<Category>();
             HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/category/get-category").Result;
             if (response.IsSuccessStatusCode)
             {
                 string data = response.Content.ReadAsStringAsync().Result;
-                categories = JsonConvert.DeserializeObject<List<CategoriesViewModel>>(data);
+                categories = JsonConvert.DeserializeObject<List<Category>>(data);
             }
             return View(categories);
         }

@@ -2,4 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div> @await Component.InvokeAsync("Categories") </div>
+<div class="app_container">
+    <div class="grid">
+        <div class="grid__row app_content">
+            @*render categories*@
+            <vc:categories></vc:categories>
+
+            @*render products*@
+            <vc:products></vc:products>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //builder.Services.AddDbContext<CategoryContext>(opt => opt.UseInMemoryDatabase("CategoriesDb"));
-builder.Services.AddDbContext<CategoryContext>(opt => 
+builder.Services.AddDbContext<ShopeeContext>(opt => 
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();

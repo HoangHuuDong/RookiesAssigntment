@@ -1,0 +1,129 @@
+﻿@model Product
+
+    <main role="main">
+        <div class="container mt-4">
+            <div class="card">
+                <div class="container-fluid">
+                    <h3>Thông tin chi tiết về Sản phẩm</h3>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="container-fliud">
+                    <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
+                        action="/php/twig/frontend/giohang/themvaogiohang">
+                        <input type="hidden" name="sp_ma" id="sp_ma" value="5">
+                        <input type="hidden" name="sp_ten" id="sp_ten" value="Samsung Galaxy Tab 10.1 3G 16G">
+                        <input type="hidden" name="sp_gia" id="sp_gia" value="10990000.00">
+                        <input type="hidden" name="hinhdaidien" id="hinhdaidien" value="samsung-galaxy-tab-10.jpg">
+
+                        <div class="wrapper row">
+                            <div class="preview col-md-6">
+                                <div class="preview-pic tab-content">
+                                    <div class="tab-pane active" id="pic-1">
+                                        <img src="@Model.Image">
+                                    </div>
+                                    <div class="tab-pane" id="pic-2">
+                                        <img src="@Model.Image2">
+                                    </div>
+                                    <div class="tab-pane" id="pic-3">
+                                        <img src="@Model.Image3">
+                                    </div>
+                                </div>
+                                <ul class="preview-thumbnail nav nav-tabs">
+                                    <li class="active">
+                                        <a data-target="#pic-1" data-toggle="tab" class="active">
+                                            <img src="@Model.Image">
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-target="#pic-2" data-toggle="tab" class="">
+                                            <img src="@Model.Image2">
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-target="#pic-3" data-toggle="tab" class="">
+                                            <img src="@Model.Image3">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="details col-md-6">
+                                <h3 class="product-title">@Model.Name</h3>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <span class="review-no">1030 reviews</span>
+                                </div>
+                                <p class="product-description">@Model.Description</p>
+                                <small class="old-price text-muted">Giá cũ: <s><span>1.200.000 vnđ</span></s></small>
+                                <h4 class="price">Giá hiện tại: <span>@Model.Price.000 vnđ</span></h4>
+                                <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
+                                    <strong>Uy
+                                        tín</strong>!</p>
+                                <h5 class="sizes">sizes:
+                                    <span class="size" data-toggle="tooltip" title="cỡ Nhỏ">s</span>
+                                    <span class="size" data-toggle="tooltip" title="cỡ Trung bình">m</span>
+                                    <span class="size" data-toggle="tooltip" title="cỡ Lớn">l</span>
+                                    <span class="size" data-toggle="tooltip" title="cỡ Đại">xl</span>
+                                </h5>
+                                <h5 class="colors">colors:
+                                    <span class="color orange not-available" data-toggle="tooltip"
+                                        title="Hết hàng"></span>
+                                    <span class="color green"></span>
+                                    <span class="color blue"></span>
+                                </h5>
+                                <div class="form-group">
+                                    <label class="quantity" for="soluong">Số lượng đặt mua:</label>
+                                    <input type="number" class="form-control" id="soluong" name="soluong">
+                                </div>
+                                <div class="action">
+                                    <a onclick="add()" class="add-to-cart btn btn-default" id="btnThemVaoGioHang">Thêm vào giỏ hàng</a>
+                                    <a class="like btn btn-default" href="#"><span class="fa fa-heart"></span></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- End block content -->
+    </main>
+
+        <script>
+        function add(){
+            var b = document.getElementById("header__cart-notice");
+            b.innerHTML=`1`
+
+            var a = document.getElementById("header__cart-list-item");
+            a.innerHTML = 
+            `
+            <li class="header__cart-item">
+                <img src="@Model.Image" alt="" class="header__cart-img">
+                <div class="header__cart-item-info">
+                    <div class="header__cart_item-head">
+                        <h5 class="header__cart-item-name">@Model.Name</h5>
+                        <div class="header__cart-item-price-wrap">
+                            <span class="header__cart-item-price">@Model.Price.000</span>
+                            <span class="header__cart-item-multiply">x</span>
+                            <span class="header__cart-item-qnt">1</span>
+                        </div>
+                    </div>
+                    <div class="header__cart-item-body">
+                        <span class="header__cart-item-description">
+                            Color : Orange
+                        </span>
+                        <span class="header__cart-item-remove">Delete</span>
+                    </div>
+                </div>
+            </li>
+            `;
+        }
+    </script>

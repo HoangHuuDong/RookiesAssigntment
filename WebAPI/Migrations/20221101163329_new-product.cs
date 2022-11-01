@@ -4,27 +4,27 @@
 
 namespace WebAPI.Migrations
 {
-    public partial class newdb : Migration
+    public partial class newproduct : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Amount",
-                table: "Categories",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
-
-            migrationBuilder.AddColumn<string>(
                 name: "Description",
-                table: "Categories",
+                table: "Products",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
-                name: "Image",
-                table: "Categories",
+                name: "Image2",
+                table: "Products",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "Image3",
+                table: "Products",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
@@ -33,16 +33,16 @@ namespace WebAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Amount",
-                table: "Categories");
-
-            migrationBuilder.DropColumn(
                 name: "Description",
-                table: "Categories");
+                table: "Products");
 
             migrationBuilder.DropColumn(
-                name: "Image",
-                table: "Categories");
+                name: "Image2",
+                table: "Products");
+
+            migrationBuilder.DropColumn(
+                name: "Image3",
+                table: "Products");
         }
     }
 }
