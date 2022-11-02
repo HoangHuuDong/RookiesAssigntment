@@ -71,7 +71,7 @@
                     <div class="header__search">
                         <form style="display:contents" asp-controller="Home" asp-action="Search" method="get">
                             <div class="header__search-input-wrap">
-                                <input type="text" class="header__search-input" placeholder="Search product">
+                                <input id="product" name="product" type="text" class="header__search-input" placeholder="Search product">
                                 <div class="header__search-history">
                                     <h3 class="header__search-history-heading">History</h3>
                                     <ul class="header__search-history-list">
@@ -84,7 +84,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <button class="header__search-btn">
+                            <button type="submit" class="header__search-btn">
                                 <i class="header__search-btn-icon fas fa-search"></i>
                             </button>
                         </form>

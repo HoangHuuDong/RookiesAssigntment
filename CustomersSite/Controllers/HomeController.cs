@@ -46,7 +46,7 @@ namespace CustomersSite.Controllers
             return View(getproduct);
         }
 
-        public IActionResult Search(string name)
+        public IActionResult Search([FromQuery(Name ="product")] string name)
         {
             List<Product> searchproduct = new List<Product>();
             HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/product/searching/" + name).Result;
