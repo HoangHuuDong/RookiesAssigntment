@@ -32,17 +32,17 @@
                                 </div>
                                 <ul class="preview-thumbnail nav nav-tabs">
                                     <li class="active">
-                                        <a data-target="#pic-1" data-toggle="tab" class="active">
+                                        <a data-target="#pic-1" data-toggle="tab" class="tab-pane active">
                                             <img src="@Model.Image">
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a data-target="#pic-2" data-toggle="tab" class="">
+                                        <a data-target="#pic-2" data-toggle="tab" class="tab-pane">
                                             <img src="@Model.Image2">
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a data-target="#pic-3" data-toggle="tab" class="">
+                                        <a data-target="#pic-3" data-toggle="tab" class="tab-pane">
                                             <img src="@Model.Image3">
                                         </a>
                                     </li>
@@ -61,7 +61,7 @@
                                     <span class="review-no">1030 reviews</span>
                                 </div>
                                 <p class="product-description">@Model.Description</p>
-                                <small class="old-price text-muted">Giá cũ: <s><span>1.200.000 vnđ</span></s></small>
+                                <small class="old-price text-muted">Giá cũ: <s><span>@Model.OldPrice.000 vnđ</span></s></small>
                                 <h4 class="price">Giá hiện tại: <span>@Model.Price.000 vnđ</span></h4>
                                 <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
                                     <strong>Uy
