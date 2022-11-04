@@ -1,83 +1,81 @@
-import logo from './logo.svg';
 import axios from "axios"
 import React, { Fragment,Component } from 'react';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
+import Category from './components/Category';
+import List from './components/List';
 import './App.css';
-
-const columnDefs = [
-  {
-      "headerName": "Tên",
-      "field": "name",
-  },
-  {
-      "headerName": "Mô tả",
-      "field": "description",
-  },
-  {
-      "headerName": "Ảnh",
-      "field": "image",
-  },
-  {
-      "headerName": "Giá",
-      "field": "price",
-  },
-  {
-      "headerName": "Ngày tạo",
-      "field": "createdDate",
-  },
-]
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
-  const { data } = useFetch( 'https://localhost:7290/api/product/get-product' );
-  console.log(data);  
-  return (
-    <Fragment className="app">
-      <Header/>
+  const [listState,setListState] = useState([])
+  const [listItemState,setListItemState] = useState([])
 
-      <div className="app_container">
-            <div className="grid">
-                <div className="grid__row app_content">
-                    <div className="grid__column-2">
-                        <nav className="category">
-                            <h3 className="category-heading">
-                                <i className="category-heading-icon fa-solid fa-list"></i>
-                                Category
-                            </h3>
-            
-                            <ul className="category-list">
-                                <li className="category-item category-item--active">
-                                    <a href="#" className="category-item-link">Áo</a>
-                                </li>
-                                <li className="category-item">
-                                    <a href="#" className="category-item-link">Quần</a>
-                                </li>
-                                <li className="category-item">
-                                    <a href="#" className="category-item-link">Mỹ phẩm</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div className="grid__column-10">
-                        <div className="show-item">
-                          
-                        </div>
-                    </div>
-                </div>
-            </div>
+  const fetchData = async () =>{
+    const category = 'https://localhost:7290/api/category/get-category';
+    const product = 'https://localhost:7290/api/product/get-product'
+
+    const getCategory = await axios.get(category)
+    const getProduct = await axios.get(product)
+    axios.all([getCategory,getProduct]).then(
+      axios.spread((...allData) => {
+        const allCategory = allData[0].data
+        const allProduct = allData[1].data
+        console.log(allProduct)
+
+        setListState(allCategory)
+        setListItemState(allProduct)
+      })
+    )
+  }
+
+  useEffect(() =>{
+      fetchData()
+      // const getData = async () =>{
+      //     try {
+      //         const res = await axios.get('https://localhost:7290/api/category/get-category')
+      //         setListState(res.data)
+      //         // console.log(listState)
+      //     } catch (error) {
+      //         console.log(error.message)
+      //     }
+      // }
+      // getData()
+  },[])
+  
+
+  return (
+    <Router>
+      <Fragment>
+        <div className="app">
+          <header className="header">
+            <Header/>
+          </header>
+
+          <div className="app_container">
+              <div className="grid">
+                  <div className="grid__row app_content">
+                    <Category listProps={listState}/>
+
+                    <List listItemProps={listItemState}/>
+                  </div>
+              </div>
+          </div>
         </div>
-    </Fragment>
+      </Fragment>
+    </Router>
   );
 }
 
-const useFetch = (url = 'https://localhost:7290/api/product/get-product', options = null) => {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    fetch(url, options)
-      .then(res => res.json())
-      .then(data => setData(data));
-  }, [url, options]);
-  return {data}
-}
+// const useFetch = (url = 'https://localhost:7290/api/product/get-product', options = null) => {
+//   const [data, setData] = useState(null);
+//   useEffect(() => {
+//     fetch(url, options)
+//       .then(res => res.json())
+//       .then(data => setData(data));
+//   }, [url, options]);
+//   return {data}
+// }
 
 export default App;

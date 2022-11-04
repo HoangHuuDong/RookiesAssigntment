@@ -39,8 +39,8 @@ namespace WebAPI.Controllers
             return Ok(category);
         }
         [HttpPut]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> UpdateCategories([FromRoute] Guid id, UpdateCategory updateCategory)
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateCategories([FromRoute] int id, UpdateCategory updateCategory)
         {
             var category = dbContext.Categories.Find(id);
             if (category != null)
@@ -54,8 +54,8 @@ namespace WebAPI.Controllers
             return NotFound();
         }
         [HttpDelete]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> DeleteCatogories([FromRoute] Guid id)
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteCatogories([FromRoute] int id)
         {
             var category = await dbContext.Categories.FindAsync(id);
             if (category != null)
