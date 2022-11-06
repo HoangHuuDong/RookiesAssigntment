@@ -6,25 +6,26 @@ const Header = () =>{
         <div className="grid">
             <nav className="header__navbar">
                 <ul className="header__navbar-list">
-                    <li className="header__navbar-item header__navbar-item--separate">Rookies Store
-                    </li>
-                    <li className="header__navbar-item header__navbar-item--has-qr">Download App
-                        <div className="header__qr">
-                            <img src="./assets/img/qr_code.png" alt="QR code" className="header__qr-img"/>
-                            <div className="header__qr-apps">
-                                <a href="" className="header__qr-link-left">
-                                    <img src="./assets/img/app_store.png" alt="App Store" className="header__qr-download-img"/>
-                                </a>
-                                <a href="" className="header__qr-link-right">
-                                    <img src="./assets/img/gg_play.png" alt="Goggle Play" className="header__qr-download-img"/>
-                                </a>
-                            </div>
-                        </div>
+                    <li className="header__navbar-item">Rookies Store
                     </li>
                 </ul>
                 <ul className="header__navbar-list">
-                    <li className="header__navbar-item header__navbar-item--strong header__navbar-item--separate">Register</li>
-                    <li className="header__navbar-item header__navbar-item--strong">Login</li>
+                    <li className="header__navbar-item header__navbar-user">
+                        <img src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/267904423_3072838436303106_8402354931433032745_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=gQKdSzTZAMMAX8nkJe5&_nc_ht=scontent.fsgn2-4.fna&oh=00_AfBmer_J-Hw3HiInL9srHVcp_FI3MimR1oZSjPihq9blog&oe=636707C7" alt="" className="header__navbar-user-img"/>
+                        <span className="header__navbar-user-name">Huu Dong</span>
+
+                        <ul className="header__navbar-user-menu">
+                            <li className="header__navbar-user-item">
+                                <p>My account</p>
+                            </li>
+                            <li className="header__navbar-user-item">
+                                <p>History</p>
+                            </li>
+                            <li className="header__navbar-user-item">
+                                <p>Log Out</p>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>

@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { useNavigate  } from "react-router-dom";
 import axios from "axios";
-// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-// import {faCoffee} from '@fortawesome/free-solid-svg-icons'
+import AddCategory from "./CRUD_Category/AddCategory";
+import DeleteCategory from "./CRUD_Category/DeleteCategory";
+import UpdateCategory from "./CRUD_Category/UpdateCategory";
+import ShowCategory from "./CRUD_Category/ShowCategory";
 
 const Category = props =>{
     const list = props.listProps
-    // console.log(list)
-    // this.active = this.active.bind(this);
 
     const navigate  = useNavigate();
 
@@ -37,17 +37,22 @@ const Category = props =>{
             <nav className="category">
                 <h3 className="category-heading">
                     Category
-                    <button className="btn-custom"> New </button>
+                    <AddCategory/>
                 </h3>
 
                 <ul className="category-list">
                     {list.map(item =>{
                         return (                        
-                        <li id="category-item" className="category-item">
-                            <p onClick={()=>active(item.id)} href="#" className="category-item-link">
+                        <li className="category-item">
+                            <p onClick={()=>active(item.id)} className="category-item-link">
                                 {item.name}
                             </p>
-                        </li>)                    
+
+                            <ShowCategory id={item.id} name={item.name}/>
+                            <UpdateCategory id={item.id}/>
+                            <DeleteCategory id={item.id}/>
+                        </li>
+                        )                    
                     })}
                 </ul>
             </nav>

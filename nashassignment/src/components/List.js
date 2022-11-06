@@ -1,28 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
-import ListItem from "./ListItem";
-import axios from "axios";
+import ShowProduct from "./CRUD_Product/ShowProduct";
+import DeleteProduct from "./CRUD_Product/DeleteProduct";
+import AddProDuct from "./CRUD_Product/AddProduct";
+import UpdateProduct from "./CRUD_Product/UpdateProduct";
 
 
 const List = props =>{
 
     const list = props.listItemProps
-
-    // const { data } = useFetch( 'https://localhost:7290/api/product/get-product' );
-    // console.log(data);
-    // const [listState,setListState] = useState([])
-
-    // useEffect(() =>{
-    //     const getData = async () =>{
-    //         try {
-    //             const res = await axios.get('https://localhost:7290/api/category/get-category')
-    //             setListState(res.data)
-    //             console.log(listState)
-    //         } catch (error) {
-    //             console.log(error.message)
-    //         }
-    //     }
-    //     getData()
-    // })
 
     return(
     <Fragment>
@@ -30,15 +15,18 @@ const List = props =>{
             <nav className="category">
                 <h3 className="category-heading">
                     Product
-                    <button className="btn-custom"> New </button>
+                    <AddProDuct/>
                 </h3>
                 <ul className="category-list">
                     {list.map(item =>{
                         return (                        
-                        <li className="">
-                            <a id={item.id} href="#" className="category-item-link">
+                        <li className="product-item">
+                            <p id={item.id} className="product-item-link">
                                 {item.name}
-                                </a>
+                            </p>
+                            <ShowProduct id={item.id} name={item.name}/>
+                            <UpdateProduct id={item.id}/>
+                            <DeleteProduct id={item.id}/>
                         </li>
                         )                    
                     })}
@@ -48,15 +36,5 @@ const List = props =>{
     </Fragment>
     )
 }
-
-// const useFetch = (url = 'https://localhost:7290/api/product/get-product', options = null) => {
-//   const [data, setData] = useState(null);
-//   useEffect(() => {
-//     fetch(url, options)
-//       .then(res => res.json())
-//       .then(data => setData(data));
-//   }, [url, options]);
-//   return {data}
-// }
 
 export default List;

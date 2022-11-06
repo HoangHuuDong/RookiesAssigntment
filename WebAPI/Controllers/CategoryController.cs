@@ -24,6 +24,22 @@ namespace WebAPI.Controllers
         {
             return Ok(await dbContext.Categories.ToListAsync());
         }
+
+        [HttpGet("get-category/by-id/{id}")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategory(int id)
+        {
+            var result = from category in dbContext.Categories
+                         where category.Id == id
+                         select category;
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return await result.ToListAsync();
+        }
+
         [HttpPost]
         [Route("add-category")]
         public async Task<IActionResult> AddCategories(AddCategory addCategory)
@@ -38,8 +54,9 @@ namespace WebAPI.Controllers
 
             return Ok(category);
         }
+
         [HttpPut]
-        [Route("{id}")]
+        [Route("update/{id}")]
         public async Task<IActionResult> UpdateCategories([FromRoute] int id, UpdateCategory updateCategory)
         {
             var category = dbContext.Categories.Find(id);
@@ -54,7 +71,7 @@ namespace WebAPI.Controllers
             return NotFound();
         }
         [HttpDelete]
-        [Route("{id}")]
+        [Route("delete/{id}")]
         public async Task<IActionResult> DeleteCatogories([FromRoute] int id)
         {
             var category = await dbContext.Categories.FindAsync(id);
