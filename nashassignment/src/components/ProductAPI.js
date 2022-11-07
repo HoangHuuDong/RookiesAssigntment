@@ -6,7 +6,6 @@ const url = "https://localhost:7290/api/product/";
 const getProduct = async () => {
     try {
         let result = await axios.get(url+'get-product');
-        console.log(result);
         return result;
       } catch (error) {
         console.log(error);
@@ -29,11 +28,13 @@ const addProduct = async (productName) => {
     }
 }
 
-const updateProduct = async (_id,productName) => {
+const updateProduct = async (_id,productName,productDescription,productPrice) => {
     try {
         let product={
             id: _id,
             name: productName,
+            description: productDescription,
+            price: productPrice,
             created_by: null,
             created_at: null,
             updated_at: null

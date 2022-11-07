@@ -4,8 +4,13 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 const ShowProduct = (props) => {
-    const idCategory = props.id;
-    const nameCategory = props.name;
+    const idProduct = props.id;
+    const nameProduct = props.name;
+    const description = props.description;
+    const price = props.price;
+    const image = props.image;
+    const image2 = props.image2;
+    const image3 = props.image3;
 
     const [show, setShow] = useState(false);
   
@@ -20,17 +25,32 @@ const ShowProduct = (props) => {
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Show Category</Modal.Title>
+            <Modal.Title>Show Product</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
                 <Form.Group className="mb-3">
-                    <Form.Label>Id Category</Form.Label>
-                    <Form.Control placeholder={idCategory} disabled />
+                    <Form.Label>Id Product</Form.Label>
+                    <Form.Control placeholder={idProduct} disabled />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Name Category</Form.Label>
-                    <Form.Control placeholder={nameCategory} disabled />
+                    <Form.Label>Name Product</Form.Label>
+                    <Form.Control placeholder={nameProduct} disabled />
+                </Form.Group>                <Form.Group className="mb-3">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control placeholder={description} disabled />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Price</Form.Label>
+                    <Form.Control placeholder={price} disabled />
+                </Form.Group>                
+                <Form.Group className="mb-3 image-show" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Image</Form.Label>
+                    <div className='image-show-item'>
+                        <img className="img-size" src={image}/>
+                        <img className="img-size" src={image2}/>
+                        <img className="img-size" src={image3}/>
+                    </div>
                 </Form.Group>
             </Form>
           </Modal.Body>

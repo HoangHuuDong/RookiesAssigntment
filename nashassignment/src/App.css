@@ -219,6 +219,20 @@ display: inline-block;
     max-height: 100vh;
   }
 
+  .img-size{
+    width: 100px;
+    height: 100px;
+  }
+
+  .image-show{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-show-item{
+    display: flex;
+    justify-content: space-evenly;
+  }
 /* Header QR code */
 .header__qr{
   width: 186px;

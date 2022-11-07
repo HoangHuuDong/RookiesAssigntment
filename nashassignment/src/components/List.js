@@ -24,7 +24,7 @@ const List = props =>{
                             <p id={item.id} className="product-item-link">
                                 {item.name}
                             </p>
-                            <ShowProduct id={item.id} name={item.name}/>
+                            <ShowProduct id={item.id} name={item.name} description={item.description} price={item.price} image={item.image} image2={item.image2} image3={item.image3}/>
                             <UpdateProduct id={item.id}/>
                             <DeleteProduct id={item.id}/>
                         </li>

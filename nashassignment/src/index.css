@@ -239,3 +239,48 @@ html{
   height: var(--height);
   border-radius: 2px;
 }
+
+.dropzone{
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  border: 3px black dashed;
+  width: 60%;
+  margin: auto;
+}
+
+.dropzone-content{
+
+}
+
+.btn-dropzone{
+  border: none;
+  text-align: center;
+  background-color: rgb(218, 216, 216);
+  height: 50px;
+  border-radius: 12px;
+  color: black;
+  font-weight: bold;
+  transition-duration: 0.6s;
+}
+
+.btn-dropzone:hover{
+  background-color: blue;
+  color: aliceblue;
+}
+
+.file-list {
+  /* border: 3px dotted black; */
+  display: flex !important;
+  flex-wrap: wrap;
+  width: auto;
+  padding: 10px 20px;
+  margin: 20px 30px;
+  /* border: 3px dotted black; */
+}
+.file-list img {
+  height: 100%;
+  width: 100px;
+  padding-right: 10px;
+  object-fit: cover;
+}

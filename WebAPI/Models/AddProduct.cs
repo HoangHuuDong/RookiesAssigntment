@@ -1,13 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
-
-namespace WebAPI.Models
+﻿namespace WebAPI.Models
 {
-    public class Product
+    public class AddProduct
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
         public double OldPrice { get; set; }
@@ -16,6 +10,6 @@ namespace WebAPI.Models
         public string Image2 { get; set; }
         public string Image3 { get; set; }
         public DateTime CreatedDate { get; set; }
-        public virtual Category Category { get; set; }
+        public int CategoryId { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebAPI.Data;
 using WebAPI.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebAPI.Controllers
 {
@@ -159,17 +160,30 @@ namespace WebAPI.Controllers
 
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        [HttpPost("add-product")]
+        public async Task<ActionResult<Product>> AddProduct(AddProduct addProduct)
         {
-            _context.Products.Add(product);
+            var product = new Product()
+            {
+                //CategoryId = addProduct.CategoryId,
+                Name = addProduct.Name,
+                Description = addProduct.Description,
+                OldPrice = addProduct.OldPrice,
+                Price = addProduct.Price,
+                Image = addProduct.Image,
+                Image2 = addProduct.Image2,
+                Image3 = addProduct.Image3,
+                CreatedDate = addProduct.CreatedDate,
+            };
+
+            await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            return Ok(product);
         }
 
         // DELETE: api/Products/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

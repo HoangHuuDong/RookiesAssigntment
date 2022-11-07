@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { delCategory } from '../CategoryAPI';
+import { delProduct } from '../ProductAPI';
 
 const DeleteProduct = (props) => {
-    const idCategory = props.id;
+    const idProduct = props.id;
     // console.log(idCategory);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const del_category = async(id) => {
-        const result = await delCategory(id);
+    const del_product = async(id) => {
+        const result = await delProduct(id);
         console.log(result)
     }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        del_category(idCategory);
+        del_product(idProduct);
     }
     return (
         <>

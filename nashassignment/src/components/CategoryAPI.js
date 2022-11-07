@@ -6,7 +6,6 @@ const url = "https://localhost:7290/api/category/";
 const getCategory = async () => {
     try {
         let result = await axios.get(url+'get-category');
-        console.log(result);
         return result;
       } catch (error) {
         console.log(error);
