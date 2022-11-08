@@ -1,14 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.InteropServices;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace WebAPI.Models
+namespace WebAPI.DTO
 {
-    public class Product
+    public class ProductDTO
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
         public double OldPrice { get; set; }
@@ -18,7 +14,6 @@ namespace WebAPI.Models
         public string Image3 { get; set; }
         public DateTime CreatedDate { get; set; }
         public int CategoryId { get; set; }
-        [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
+        public string CategoryName {get; set; }
     }
 }

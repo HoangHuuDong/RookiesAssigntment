@@ -7,7 +7,16 @@ import UpdateProduct from "./CRUD_Product/UpdateProduct";
 
 const List = props =>{
 
-    const list = props.listItemProps
+    const list = props.listItemProps;
+    const category = list.map(item =>{
+        return {id: item.categoryId, value: item.categoryName}
+    } )
+
+    const uniqueCategory = [];
+    category.map((item) =>{
+        var unique = uniqueCategory.find((x) => x.id === item.id);
+        if(!unique) uniqueCategory.push(item);
+    })
 
     return(
     <Fragment>
@@ -15,7 +24,7 @@ const List = props =>{
             <nav className="category">
                 <h3 className="category-heading">
                     Product
-                    <AddProDuct/>
+                    <AddProDuct {...uniqueCategory}/>
                 </h3>
                 <ul className="category-list">
                     {list.map(item =>{

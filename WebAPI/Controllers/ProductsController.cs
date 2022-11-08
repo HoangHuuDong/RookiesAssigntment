@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebAPI.Data;
+using WebAPI.DTO;
 using WebAPI.Models;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -27,9 +28,21 @@ namespace WebAPI.Controllers
         // GET: api/Products
         [HttpGet]
         [Route("get-product")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts()
         {
-            return await _context.Products.ToListAsync();
+            var result = await _context.Products.Select(products => new ProductDTO() {
+                CategoryId = products.CategoryId,
+                CategoryName = products.Category.Name,
+                CreatedDate = products.CreatedDate,
+                Description = products.Description,
+                Image = products.Image,
+                Image2 = products.Image2,
+                Image3 = products.Image3,
+                Name = products.Name,
+                OldPrice = products.OldPrice,
+                Price = products.Price
+            }).ToListAsync();
+            return result;
         }
 
         [HttpGet("get-by-idCategory/{idCategory}")]
@@ -174,6 +187,7 @@ namespace WebAPI.Controllers
                 Image2 = addProduct.Image2,
                 Image3 = addProduct.Image3,
                 CreatedDate = addProduct.CreatedDate,
+                CategoryId = addProduct.CategoryId,
             };
 
             await _context.Products.AddAsync(product);
