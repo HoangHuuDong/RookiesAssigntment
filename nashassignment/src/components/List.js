@@ -8,6 +8,7 @@ import UpdateProduct from "./CRUD_Product/UpdateProduct";
 const List = props =>{
 
     const list = props.listItemProps;
+    console.log(list)
     const category = list.map(item =>{
         return {id: item.categoryId, value: item.categoryName}
     } )
@@ -24,7 +25,7 @@ const List = props =>{
             <nav className="category">
                 <h3 className="category-heading">
                     Product
-                    <AddProDuct {...uniqueCategory}/>
+                    <AddProDuct props = {uniqueCategory}/>
                 </h3>
                 <ul className="category-list">
                     {list.map(item =>{
@@ -34,7 +35,7 @@ const List = props =>{
                                 {item.name}
                             </p>
                             <ShowProduct id={item.id} name={item.name} description={item.description} price={item.price} image={item.image} image2={item.image2} image3={item.image3}/>
-                            <UpdateProduct id={item.id}/>
+                            <UpdateProduct id={item.id} props = {uniqueCategory}/>
                             <DeleteProduct id={item.id}/>
                         </li>
                         )                    

@@ -6,7 +6,7 @@ import Dropzone from '../Dropzone';
 import { addProduct } from '../ProductAPI';
 
 const AddProDuct = (props) => {
-    const listCategory = props;
+    const category = props.props;
 
     const [show, setShow] = useState(false);
 
@@ -23,19 +23,22 @@ const AddProDuct = (props) => {
         return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
     }
     
-    const add_product = async(name,description,oldPrice,price) => {
-        const result = await addProduct(name,description,oldPrice,price);
+    const add_product = async(name,description,oldPrice,price,img,categoryId,date) => {
+        const result = await addProduct(name,description,oldPrice,price,img,categoryId,date);
         console.log(result)
     }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        const name = e.target.name.value;
-        const description = e.targer.description.value;
-        const oldPrice = e.targer.oldprice.value;
-        const price = e.targer.price.value;
-        // const Image = e.targer.description.value;
-        add_product(name,description,oldPrice,price);
+        const nameP = e.target.name.value;
+        const desP = e.target.description.value;
+        const oldPriceP = e.target.oldprice.value;
+        const priceP = e.target.price.value;
+        const imgP = e.target.image.value;
+        const categoryP = e.target.category.value;
+        const date = getCurrentDate();
+
+        add_product(nameP,desP,oldPriceP,priceP,imgP,categoryP,date);
     }
     return (
         <>
@@ -87,13 +90,22 @@ const AddProDuct = (props) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Image</Form.Label>
-                <Dropzone/>
+                <Form.Control
+                    type="text"
+                    name="image"
+                    placeholder=""
+                    autoFocus
+                />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                <Form.Label>Select Category</Form.Label>
-                <Form.Select id="disabledSelect">
-                    {Object.values(listCategory).map((id,index) =>{
-                        <option>{id}</option>
+                <Form.Label>Category</Form.Label>
+                <Form.Select                     
+                    type="text"
+                    name="category"
+                    autoFocus
+                    aria-label="Default select example">
+                    {category.map((item) =>{
+                        return <option value={item.id}>{item.value}</option>
                     })}
                 </Form.Select>
                 </Form.Group>

@@ -12,13 +12,18 @@ const getProduct = async () => {
     }
 }
 
-const addProduct = async (productName) => {
+const addProduct = async (nameP,descriptionP,oldPriceP,priceP,imgP,categoryId,date) => {
     try {
         let product={
-            name: productName,
-            created_by: null,
-            created_at: null,
-            updated_at: null
+            name: nameP,
+            description: descriptionP,
+            oldPrice: oldPriceP,
+            price: priceP,
+            image: imgP,
+            image2: "",
+            image3: "",
+            createdDate : date,
+            categoryId : categoryId,
         };
         let result = await axios.post(url+'add-product', product);
         console.log(result);
@@ -28,18 +33,19 @@ const addProduct = async (productName) => {
     }
 }
 
-const updateProduct = async (_id,productName,productDescription,productPrice) => {
+const updateProduct = async (_id,nameP,descriptionP,oldPriceP,priceP,imgP,categoryId,date) => {
     try {
         let product={
-            id: _id,
-            name: productName,
-            description: productDescription,
-            price: productPrice,
-            created_by: null,
-            created_at: null,
-            updated_at: null
+            name: nameP,
+            description: descriptionP,
+            oldPrice: oldPriceP,
+            price: priceP,
+            image: imgP,
+            categoryId: categoryId,
+            updatedDate: date,
         };
-        let result = await axios.put(url + 'update/' + _id, product);
+        console.log(product);
+        let result = await axios.put(url+'update-product/'+_id, product);
         console.log(result);
     return result;
     } catch (error) {
@@ -51,9 +57,6 @@ const delProduct = async (_id) => {
     try {
         let product={
             id: _id,
-            created_by: null,
-            created_at: null,
-            updated_at: null
         };
         let result = await axios.delete(url + 'delete/' + _id, product)
         console.log(result);

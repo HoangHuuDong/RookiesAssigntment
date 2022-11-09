@@ -31,6 +31,7 @@ namespace WebAPI.Controllers
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts()
         {
             var result = await _context.Products.Select(products => new ProductDTO() {
+                Id = products.Id,
                 CategoryId = products.CategoryId,
                 CategoryName = products.Category.Name,
                 CreatedDate = products.CreatedDate,
@@ -142,33 +143,27 @@ namespace WebAPI.Controllers
 
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
+        [HttpPut("update-product/{id}")]
+        public async Task<IActionResult> UpdateProduct([FromRoute] int id, UpdateProduct updateproduct)
         {
-            if (id != product.Id)
+            var product = _context.Products.Find(id);
+            if (product != null)
             {
-                return BadRequest();
-            }
-
-            _context.Entry(product).State = EntityState.Modified;
-
-            try
-            {
+                product.Name = updateproduct.Name;
+                product.Description = updateproduct.Description;
+                product.OldPrice = updateproduct.OldPrice;
+                product.Price = updateproduct.Price;
+                product.Image = updateproduct.Image;
+                product.Image2 = updateproduct.Image2;
+                product.Image3 = updateproduct.Image3;
+                product.CategoryId = updateproduct.CategoryId;
+                product.UpdateDate = updateproduct.UpdateDate;
+                
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                return Ok(product);
+            }
+            return NotFound();
         }
 
         // POST: api/Products
@@ -198,7 +193,7 @@ namespace WebAPI.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProduct([FromRoute] int id)
         {
             var product = await _context.Products.FindAsync(id);
             if (product == null)

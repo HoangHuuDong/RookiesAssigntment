@@ -6,7 +6,7 @@ const Dropzone = ({ open }) => {
 
     const files = acceptedFiles.map((file) => (
         <li key={file.path}>
-        {file.path} - {file.size} bytes
+            {file.path}
         </li>
     ));
     return (
