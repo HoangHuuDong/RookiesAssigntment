@@ -5,7 +5,6 @@ import Category from './components/Category';
 import List from './components/List';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router} from "react-router-dom";
 import { getCategory } from "./components/CategoryAPI";
 import { getProduct } from "./components/ProductAPI";
 
@@ -29,25 +28,23 @@ function App() {
   
 
   return (
-    <Router>
-      <Fragment>
-        <div className="app">
-          <header className="header">
-            <Header/>
-          </header>
+    <Fragment>
+      <div className="app">
+        <header className="header">
+          <Header/>
+        </header>
 
-          <div className="app_container">
-              <div className="grid">
-                  <div className="grid__row app_content">
-                    <Category listProps={listState}/>
+        <div className="app_container">
+            <div className="grid">
+                <div className="grid__row app_content">
+                  <Category listProps={listState}/>
 
-                    <List listItemProps={listItemState}/>
-                  </div>
-              </div>
-          </div>
+                  <List listItemProps={listItemState}/>
+                </div>
+            </div>
         </div>
-      </Fragment>
-    </Router>
+      </div>
+    </Fragment>
   );
 }
 

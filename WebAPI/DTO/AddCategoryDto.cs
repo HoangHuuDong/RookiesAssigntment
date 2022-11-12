@@ -1,6 +1,6 @@
-﻿namespace WebAPI.Models
+﻿namespace WebAPI.DTO
 {
-    public class AddCategory
+    public class AddCategoryDto
     {
         //public Guid Id { get; set; }
         public string Name { get; set; }

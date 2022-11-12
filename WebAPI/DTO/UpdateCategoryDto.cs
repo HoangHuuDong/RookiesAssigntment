@@ -1,6 +1,6 @@
-﻿namespace WebAPI.Models
+﻿namespace WebAPI.DTO
 {
-    public class UpdateCategory
+    public class UpdateCategoryDto
     {
         public string Name { get; set; }
         public DateTime UpdateDate { get; set; }

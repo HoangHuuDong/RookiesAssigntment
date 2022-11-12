@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Runtime.InteropServices;
 using WebAPI.Data;
+using WebAPI.DTO;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -40,9 +41,8 @@ namespace WebAPI.Controllers
             return await result.ToListAsync();
         }
 
-        [HttpPost]
-        [Route("add-category")]
-        public async Task<IActionResult> AddCategories(AddCategory addCategory)
+        [HttpPost("add-category")]
+        public async Task<IActionResult> AddCategories(AddCategoryDto addCategory)
         {
             var category = new Category()
             {
@@ -57,7 +57,7 @@ namespace WebAPI.Controllers
 
         [HttpPut]
         [Route("update/{id}")]
-        public async Task<IActionResult> UpdateCategories([FromRoute] int id, UpdateCategory updateCategory)
+        public async Task<IActionResult> UpdateCategories([FromRoute] int id, UpdateCategoryDto updateCategory)
         {
             var category = dbContext.Categories.Find(id);
             if (category != null)

@@ -1,6 +1,6 @@
-﻿namespace WebAPI.Models
+﻿namespace WebAPI.DTO
 {
-    public class AddProduct
+    public class AddProductDto
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import Dropzone from '../Dropzone';
 import { addProduct } from '../ProductAPI';
 
 const AddProDuct = (props) => {
@@ -25,7 +24,17 @@ const AddProDuct = (props) => {
     
     const add_product = async(name,description,oldPrice,price,img,categoryId,date) => {
         const result = await addProduct(name,description,oldPrice,price,img,categoryId,date);
-        console.log(result)
+        if(result.status = '200'){
+            setTimeout(() => {
+                alert("Your shop is being updated!");
+            }, 1000);
+          }
+          else{
+            alert("Something was wrong, check it out!!");
+          }
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
     }
 
     const handleSubmit = (e) =>{

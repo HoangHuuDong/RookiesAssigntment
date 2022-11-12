@@ -3,19 +3,30 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { updateProduct } from '../ProductAPI';
+import ShowNoti from '../ShowNoti';
 
 const UpdateProduct = (props) => {
     const idProduct = props.id;
     const category = props.props;
 
     const [show, setShow] = useState(false);
-  
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   
-    const update_product = async(idP,nameP,desP,oldPriceP,priceP,imgP,categoryP,date) => {
-      const result = await updateProduct(idP,nameP,desP,oldPriceP,priceP,imgP,categoryP,date);
-      console.log(result)
+    const update_product = async(idP,product,date) => {
+      const result = await updateProduct(idP,product,date);
+      if(result.status = '200'){
+        setTimeout(() => {
+          alert("Your shop is being updated!");
+        }, 1000);
+      }
+      else{
+        alert("Something was wrong, check it out!!");
+      }
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     }
 
     const getCurrentDate = (separator='-') =>{
@@ -26,20 +37,14 @@ const UpdateProduct = (props) => {
       let year = newDate.getFullYear();
 
       return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
-  }
+    }
   
     const handleSubmit = (e) =>{
       e.preventDefault();
       const idP = idProduct;
-      const nameP = e.target.name.value;
-      const desP = e.target.description.value;
-      const oldPriceP = e.target.oldprice.value;
-      const priceP = e.target.price.value;
-      const imgP = e.target.image.value;
-      const categoryP = e.target.category.value;
+      const product = e.target;
       const date = getCurrentDate();
-      
-      update_product(idP,nameP,desP,oldPriceP,priceP,imgP,categoryP,date);
+      update_product(idP,product,date);
     }
     
     return (
@@ -111,7 +116,7 @@ const UpdateProduct = (props) => {
                     })}
                 </Form.Select>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button onClick={() => setShow(false)} variant="primary" type="submit">
                     Save
                 </Button>
             </Form>

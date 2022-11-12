@@ -12,6 +12,15 @@ const getProduct = async () => {
     }
 }
 
+const getProductByIdCate = async (id) => {
+    try{
+        let result = await axios.get(url+'get-by-idCategory/'+id);
+        return result;
+    }catch(error){
+        console.log(error);
+    }
+}
+
 const addProduct = async (nameP,descriptionP,oldPriceP,priceP,imgP,categoryId,date) => {
     try {
         let product={
@@ -33,19 +42,20 @@ const addProduct = async (nameP,descriptionP,oldPriceP,priceP,imgP,categoryId,da
     }
 }
 
-const updateProduct = async (_id,nameP,descriptionP,oldPriceP,priceP,imgP,categoryId,date) => {
+const updateProduct = async (_id,products,date) => {
     try {
         let product={
-            name: nameP,
-            description: descriptionP,
-            oldPrice: oldPriceP,
-            price: priceP,
-            image: imgP,
-            categoryId: categoryId,
+            id : _id,
+            name: products.name.value,
+            description: products.description.value,
+            oldPrice: products.oldprice.value,
+            price: products.price.value,
+            image: products.image.value,
+            categoryId: products.category.value,
             updatedDate: date,
         };
         console.log(product);
-        let result = await axios.put(url+'update-product/'+_id, product);
+        let result = await axios.put(url+'update-product',product);
         console.log(result);
     return result;
     } catch (error) {
@@ -68,4 +78,4 @@ const delProduct = async (_id) => {
 }
 
 
-export {getProduct,addProduct,delProduct,updateProduct}
+export {getProduct,getProductByIdCate,addProduct,delProduct,updateProduct}

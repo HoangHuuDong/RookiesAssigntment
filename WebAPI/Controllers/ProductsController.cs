@@ -26,11 +26,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Products
-        [HttpGet]
-        [Route("get-product")]
-        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts()
+        [HttpGet("get-product")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
         {
-            var result = await _context.Products.Select(products => new ProductDTO() {
+            var result = await _context.Products.Select(products => new ProductDto() {
                 Id = products.Id,
                 CategoryId = products.CategoryId,
                 CategoryName = products.Category.Name,
@@ -141,12 +140,10 @@ namespace WebAPI.Controllers
             return product;
         }
 
-        // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("update-product/{id}")]
-        public async Task<IActionResult> UpdateProduct([FromRoute] int id, UpdateProduct updateproduct)
+        [HttpPut("update-product")]
+        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductDto updateproduct)
         {
-            var product = _context.Products.Find(id);
+            var product = _context.Products.Find(updateproduct.Id);
             if (product != null)
             {
                 product.Name = updateproduct.Name;
@@ -154,8 +151,6 @@ namespace WebAPI.Controllers
                 product.OldPrice = updateproduct.OldPrice;
                 product.Price = updateproduct.Price;
                 product.Image = updateproduct.Image;
-                product.Image2 = updateproduct.Image2;
-                product.Image3 = updateproduct.Image3;
                 product.CategoryId = updateproduct.CategoryId;
                 product.UpdateDate = updateproduct.UpdateDate;
                 
@@ -167,9 +162,8 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("add-product")]
-        public async Task<ActionResult<Product>> AddProduct(AddProduct addProduct)
+        public async Task<ActionResult<Product>> AddProduct(AddProductDto addProduct)
         {
             var product = new Product()
             {

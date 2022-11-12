@@ -1,13 +1,13 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import ShowProduct from "./CRUD_Product/ShowProduct";
 import DeleteProduct from "./CRUD_Product/DeleteProduct";
 import AddProDuct from "./CRUD_Product/AddProduct";
 import UpdateProduct from "./CRUD_Product/UpdateProduct";
 
 
-const List = props =>{
-
+const ListByCate = props =>{
     const list = props.listItemProps;
+    console.log(list)
     const category = list.map(item =>{
         return {id: item.categoryId, value: item.categoryName}
     } )
@@ -46,4 +46,4 @@ const List = props =>{
     )
 }
 
-export default List;
+export default ListByCate;

@@ -14,7 +14,17 @@ const UpdateCategory = (props) => {
   
     const update_category = async(_id,categoryName) => {
       const result = await updateCategory(_id,categoryName);
-      console.log(result)
+      if(result.status = '200'){
+        setTimeout(() => {
+          alert("Your shop is being updated!");
+        }, 1000);
+      }
+      else{
+        alert("Something was wrong, check it out!!");
+      }
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     }
   
     const handleSubmit = (e) =>{

@@ -1,12 +1,15 @@
 import React, { Fragment } from "react";
-
 const Header = () =>{
+    const url = 'https://localhost:7107/';
     return (
     <Fragment> 
         <div className="grid">
             <nav className="header__navbar">
                 <ul className="header__navbar-list">
-                    <li className="header__navbar-item">Rookies Store
+                    <li onClick={()=>window.location.href = "/"} className="header__navbar-item">Rookies Store
+                    </li>
+                    <li onClick={()=>window.location.href = url} className="header__navbar-item">
+                        Customer Site
                     </li>
                 </ul>
                 <ul className="header__navbar-list">
