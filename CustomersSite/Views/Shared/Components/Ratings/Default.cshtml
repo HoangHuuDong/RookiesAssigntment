@@ -1,0 +1,40 @@
+﻿@model List<Rating>
+
+<div class="card title">
+    <div class="container-fluid">
+        <h3>Đánh giá sản phẩm</h3>
+    </div>
+</div>
+
+<div class="card">
+    @foreach (var rating in Model)
+    {
+        <div class="header-rating">
+            <div class="name-rating">
+                <span style="font-size: 1.3rem" class="heading-rating">@rating.UserName</span>
+            </div>
+
+            <div style="margin-top: 5px" class="star">
+                @for (var i = 0; i < rating.Rate; i++)
+                {
+                    <span class="fa fa-star checked"></span>
+                }
+                @for (var i = 0; i < 5-(rating.Rate); i++)
+                {
+                    <span class="fa fa-star"></span>
+                }
+            </div>
+        </div>
+
+        <div style="margin-top: 5px" class="row">
+            <div class="side createday">
+                <div>@rating.CreatedDate</div>
+            </div>
+            <div style="margin-top: 5px" class="side comment">
+                <div style="font-size: 1.3rem">@rating.Description</div>
+            </div>
+
+        </div>
+        <hr style="border:3px solid #f1f1f1">
+    }
+</div>

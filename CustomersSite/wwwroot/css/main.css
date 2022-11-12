@@ -840,3 +840,12 @@
     text-decoration: none;
     color: var(--white-color);
 }
+
+.title {
+    margin-top: 10px;
+}
+
+.header-rating {
+    display: flex;
+    flex-direction: column;
+}

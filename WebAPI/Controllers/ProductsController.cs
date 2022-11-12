@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
                 Image3 = products.Image3,
                 Name = products.Name,
                 OldPrice = products.OldPrice,
-                Price = products.Price
+                Price = products.Price,
             }).ToListAsync();
             return result;
         }

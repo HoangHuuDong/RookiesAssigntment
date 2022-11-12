@@ -21,5 +21,7 @@ namespace WebAPI.Models
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+        public virtual List<Rating> Rating { get; set; }
+
     }
 }
