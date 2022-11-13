@@ -10,7 +10,7 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Users
-        [HttpGet]
+        [HttpGet("get-users")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
@@ -42,8 +42,46 @@ namespace WebAPI.Controllers
             return user;
         }
 
+        [HttpGet("searching/{name}")]
+        public async Task<ActionResult<IEnumerable<User>>> SearchingCustomer(string name)
+        {
+            var result = _context.Users.Where(t => t.Name.Contains(name));
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return await result.ToListAsync();
+        }
+
+        [HttpGet("sortOrderBy/Role")]
+        public async Task<ActionResult<IEnumerable<User>>> SortOrderbyRole()
+        {
+            var result = _context.Users.OrderBy(x => x.Role);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return await result.ToListAsync();
+        }
+
+        [HttpGet("sortOrderBy/Name")]
+        public async Task<ActionResult<IEnumerable<User>>> SortOrderbyName()
+        {
+            var result = _context.Users.OrderBy(x => x.Name);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return await result.ToListAsync();
+        }
+
         // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
@@ -74,7 +112,6 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {

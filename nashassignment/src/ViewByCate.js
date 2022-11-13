@@ -14,18 +14,24 @@ function ViewByCate() {
     const [listState,setListState] = useState([])
     const [listItemState,setListItemState] = useState([])
 
-    const fetchData = async () =>{
-        // get-all-category
-        const category = await getCategory();
-        setListState(category.data);
+    // const fetchData = async () =>{
+    //     // get-all-category
+    //     const category = await getCategory();
+    //     setListState(category.data);
 
-        // get-product-by-id
-        const product = await getProductByIdCate(id);
-        setListItemState(product.data);
-    }
+    //     // get-product-by-id
+    //     const product = await getProductByIdCate(id);
+    //     setListItemState(product.data);
+    // }
 
     useEffect(() =>{
-        fetchData()
+        getCategory()
+        .then((res) => setListState(res.data))
+        .catch((error) => console.log(error))
+
+        getProductByIdCate(id)
+        .then((res) => setListItemState(res.data))
+        .catch((error) => console.log(error))
     },[])
   
 

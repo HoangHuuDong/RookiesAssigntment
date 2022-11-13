@@ -12,18 +12,14 @@ function App() {
   const [listState,setListState] = useState([])
   const [listItemState,setListItemState] = useState([])
 
-  const fetchData = async () =>{
-    // get-all-category
-    const category = await getCategory();
-    setListState(category.data);
-
-    // get-all-product
-    const product = await getProduct();
-    setListItemState(product.data);
-  }
-
   useEffect(() =>{
-      fetchData()
+    getCategory()
+    .then((res) => setListState(res.data))
+    .catch((error) => console.log(error))
+
+    getProduct()
+    .then((res) => setListItemState(res.data))
+    .catch((error) => console.log(error))
   },[])
   
 

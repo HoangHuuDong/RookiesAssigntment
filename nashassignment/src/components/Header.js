@@ -11,6 +11,9 @@ const Header = () =>{
                     <li onClick={()=>window.location.href = url} className="header__navbar-item">
                         Customer Site
                     </li>
+                    <li onClick={()=>window.location.href = "/customer"} className="header__navbar-item">
+                        Customer Manager
+                    </li>
                 </ul>
                 <ul className="header__navbar-list">
                     <li className="header__navbar-item header__navbar-user">

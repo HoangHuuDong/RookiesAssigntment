@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import ShowProduct from "./CRUD_Product/ShowProduct";
 import DeleteProduct from "./CRUD_Product/DeleteProduct";
 import AddProDuct from "./CRUD_Product/AddProduct";
